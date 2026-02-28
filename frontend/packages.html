@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | Packages</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <div>
+          <p class="eyebrow">Sky Travels</p>
+          <h1>TRAVEL DESK</h1>
+          <p id="userMeta" class="muted"></p>
+        </div>
+        <nav class="nav-list">
+          <a href="/packages.html" data-nav="packages">Browse Packages</a>
+          <a href="/bookings.html" data-nav="bookings">Booking History</a>
+          <a href="/admin.html" data-nav="admin" data-admin-only="true">Admin Console</a>
+        </nav>
+        <div class="sidebar-foot">
+          <button id="themeToggle" class="theme-switch" aria-label="Toggle theme">
+            <span class="theme-label dark">Dark</span>
+            <span class="theme-label light">Light</span>
+            <span class="theme-knob" aria-hidden="true"></span>
+          </button>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main-panel glass">
+        <header class="toolbar">
+          <h2>Browse Packages</h2>
+          <div class="filters">
+            <input id="searchInput" type="text" placeholder="Search anything (title, country, destination, etc.)" />
+            <div class="slider-wrap">
+              <label for="minPriceInput">Min Price: <span id="minPriceLabel"></span></label>
+              <input id="minPriceInput" type="range" />
+            </div>
+            <div class="slider-wrap">
+              <label for="maxPriceInput">Max Price: <span id="maxPriceLabel"></span></label>
+              <input id="maxPriceInput" type="range" />
+            </div>
+          </div>
+        </header>
+
+        <section id="packagesGrid" class="card-grid"></section>
+
+        <footer class="pager">
+          <button id="prevPage">Prev</button>
+          <span id="pageMeta">Page 1</span>
+          <button id="nextPage">Next</button>
+        </footer>
+      </main>
+    </div>
+
+    <div id="paymentModal" class="modal hidden">
+      <div class="modal-content glass payment-wide-modal">
+        <div class="tab-header-row">
+          <h3 id="paymentModalTitle">Trip & Payment Details</h3>
+          <button type="button" id="closePaymentModalBtn" class="icon-close-btn" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <form id="paymentForm" class="stack">
+          <div class="payment-modal-grid">
+            <section class="payment-pane">
+              <h4>Trip Details</h4>
+              <div id="paymentSummary" class="muted"></div>
+              <div class="form-grid-two">
+                <div class="form-field">
+                  <label for="paymentAdults">Adults</label>
+                  <input id="paymentAdults" type="number" min="1" max="20" value="1" required />
+                </div>
+                <div class="form-field">
+                  <label for="paymentChildren">Children</label>
+                  <input id="paymentChildren" type="number" min="0" max="20" value="0" required />
+                </div>
+                <div class="form-field span-2">
+                  <label for="paymentTravelDate">Travel Start Date</label>
+                  <input id="paymentTravelDate" type="date" required />
+                  <small id="paymentTravelDateError" class="field-error"></small>
+                </div>
+                <small id="paymentTravellersError" class="field-error span-2"></small>
+              </div>
+            </section>
+
+            <section class="payment-pane">
+              <h4>Payment</h4>
+              <div class="form-field">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod">
+                  <option value="UPI">UPI</option>
+                  <option value="CC">Credit Card</option>
+                  <option value="DC">Debit Card</option>
+                  <option value="NETBANKING">Net Banking</option>
+                </select>
+                <small id="paymentMethodError" class="field-error"></small>
+              </div>
+
+              <div id="upiFields" class="form-field">
+                <label for="upiValue">UPI ID / Number</label>
+                <input id="upiValue" placeholder="name@bank or 9876543210" />
+                <small id="upiError" class="field-error"></small>
+              </div>
+
+              <div id="cardFields" class="stack hidden">
+                <div class="form-field">
+                  <label for="cardNumber">Card Number</label>
+                  <input id="cardNumber" placeholder="1234 5678 9012 3456" />
+                  <small id="cardNumberError" class="field-error"></small>
+                </div>
+                <div class="form-field">
+                  <label for="cardMeta">CVV, Expiry (MM/DD)</label>
+                  <div class="card-meta-row">
+                    <input id="cardCvv" placeholder="CVV" />
+                    <input id="cardExpiry" placeholder="MM/DD" />
+                  </div>
+                  <small id="cardMetaError" class="field-error"></small>
+                </div>
+              </div>
+
+              <div id="netbankingFields" class="form-field hidden">
+                <label for="netbankingBank">NetBanking Bank</label>
+                <select id="netbankingBank">
+                  <option value="">Select Bank</option>
+                  <option value="HDFC">HDFC</option>
+                  <option value="ICICI">ICICI</option>
+                  <option value="SBI">SBI</option>
+                </select>
+                <small id="netbankingError" class="field-error"></small>
+              </div>
+
+              <label class="check-row">
+                <input id="makePaymentDefault" type="checkbox" />
+                Make this payment method default
+              </label>
+            </section>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="cancelPaymentBtn">Cancel</button>
+            <button type="submit" class="primary" id="confirmPaymentBtn">Pay Now</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/js/packages-page.js"></script>
+  </body>
+</html>

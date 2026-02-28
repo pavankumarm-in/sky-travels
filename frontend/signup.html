@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | Sign Up</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <main class="auth-shell">
+      <section class="brand-panel glass">
+        <p class="eyebrow">International Travel Platform</p>
+        <h1>Create Account</h1>
+        <p class="muted">
+          Register to explore destinations, manage bookings, and access your travel history.
+        </p>
+      </section>
+
+      <section class="auth-panel glass">
+        <form id="signupForm" class="stack">
+          <h2>Sign Up</h2>
+          <div class="form-field">
+            <label for="signupName">Name</label>
+            <input id="signupName" type="text" placeholder="Name (min 3 chars)" required />
+            <small id="signupNameError" class="field-error"></small>
+          </div>
+          <div class="form-field">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" placeholder="Email address" required />
+            <small id="signupEmailError" class="field-error"></small>
+          </div>
+          <div class="form-field">
+            <label for="signupPassword">Password</label>
+            <input id="signupPassword" type="password" placeholder="Password (min 8 chars)" required />
+            <small id="signupPasswordError" class="field-error"></small>
+          </div>
+          <button type="submit" class="primary">Create Account</button>
+          <a class="ghost-link" href="/login.html">Back to Login</a>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="/js/signup-page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | Package Details</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <div>
+          <p class="eyebrow">Sky Travels</p>
+          <h1>TRAVEL DESK</h1>
+          <p id="userMeta" class="muted"></p>
+        </div>
+        <nav class="nav-list">
+          <a href="/packages.html" data-nav="packages">Packages</a>
+          <a href="/bookings.html" data-nav="bookings">My Bookings</a>
+          <a href="/admin.html" data-nav="admin" data-admin-only="true">Admin</a>
+        </nav>
+        <div class="sidebar-foot">
+          <button id="themeToggle" class="theme-switch" aria-label="Toggle theme">
+            <span class="theme-label dark">Dark</span>
+            <span class="theme-label light">Light</span>
+            <span class="theme-knob" aria-hidden="true"></span>
+          </button>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main-panel glass">
+        <header class="toolbar single">
+          <h2>Package Details</h2>
+          <a href="/packages.html" class="ghost-link">Back to packages</a>
+        </header>
+        <section id="detailsContainer"></section>
+      </main>
+    </div>
+
+    <script type="module" src="/js/package-details-page.js"></script>
+  </body>
+</html>

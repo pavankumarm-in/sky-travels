@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | My Bookings</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <div>
+          <p class="eyebrow">Sky Travels</p>
+          <h1>TRAVEL DESK</h1>
+          <p id="userMeta" class="muted"></p>
+        </div>
+        <nav class="nav-list">
+          <a href="/packages.html" data-nav="packages">Browse Packages</a>
+          <a href="/bookings.html" data-nav="bookings">Booking History</a>
+          <a href="/admin.html" data-nav="admin" data-admin-only="true">Admin Console</a>
+        </nav>
+        <div class="sidebar-foot">
+          <button id="themeToggle" class="theme-switch" aria-label="Toggle theme">
+            <span class="theme-label dark">Dark</span>
+            <span class="theme-label light">Light</span>
+            <span class="theme-knob" aria-hidden="true"></span>
+          </button>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main-panel glass">
+        <header class="toolbar single">
+          <h2>My Booking History</h2>
+        </header>
+
+        <section id="bookingsGrid" class="card-grid two-col"></section>
+
+        <footer class="pager">
+          <button id="prevPage">Prev</button>
+          <span id="pageMeta">Page 1</span>
+          <button id="nextPage">Next</button>
+        </footer>
+      </main>
+    </div>
+
+    <script type="module" src="/js/bookings-page.js"></script>
+  </body>
+</html>

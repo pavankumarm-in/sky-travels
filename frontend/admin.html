@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | Admin</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <div>
+          <p class="eyebrow">Sky Travels</p>
+          <h1>TRAVEL ADMIN</h1>
+          <p id="userMeta" class="muted"></p>
+        </div>
+        <nav class="nav-list">
+          <button class="admin-view-link active-link" data-admin-view-target="dashboardTab" type="button">
+            Dashboard
+          </button>
+          <button class="admin-view-link" data-admin-view-target="bookingsTab" type="button">
+            Bookings <span id="pendingCountBadge" class="count-badge hidden">0</span>
+          </button>
+          <button class="admin-view-link" data-admin-view-target="packagesTab" type="button">
+            Manage Packages
+          </button>
+          <button class="admin-view-link" data-admin-view-target="usersTab" type="button">
+            Manage Users
+          </button>
+          <button class="admin-view-link" data-admin-view-target="auditTab" type="button">
+            Audit History
+          </button>
+        </nav>
+        <div class="sidebar-foot">
+          <button id="themeToggle" class="theme-switch" aria-label="Toggle theme">
+            <span class="theme-label dark">Dark</span>
+            <span class="theme-label light">Light</span>
+            <span class="theme-knob" aria-hidden="true"></span>
+          </button>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main-panel glass">
+        <section id="bookingsTab" class="tab-panel">
+          <div class="glass card">
+            <h2>Bookings [Awaiting Confirmation]</h2>
+            <div id="bookingsApprovalList"></div>
+          </div>
+        </section>
+
+        <section id="dashboardTab" class="tab-panel">
+          <div class="glass card">
+            <h2>Dashboard</h2>
+            <div id="analyticsKpis" class="analytics-kpi-grid"></div>
+            <canvas id="analyticsChart"></canvas>
+          </div>
+        </section>
+
+        <section id="packagesTab" class="tab-panel">
+          <div class="glass card">
+            <div class="tab-header-row">
+              <h2>Manage Packages</h2>
+              <button id="openCreatePackageBtn" class="primary" type="button">Create Package</button>
+            </div>
+            <div id="adminPackages"></div>
+          </div>
+        </section>
+
+        <section id="usersTab" class="tab-panel">
+          <div class="glass card">
+            <h2>Manage Users</h2>
+            <div id="usersList"></div>
+          </div>
+        </section>
+
+        <section id="auditTab" class="tab-panel">
+          <div class="glass card">
+            <h2>Audit History</h2>
+            <div id="auditList"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="packageModal" class="modal hidden">
+      <div class="modal-content glass full-screen-modal">
+        <div class="tab-header-row">
+          <h3 id="packageModalTitle">Create Package</h3>
+          <button type="button" id="closePackageModalBtn" class="icon-close-btn" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <form id="packageForm" class="stack">
+          <input type="hidden" id="packageId" />
+          <div class="modal-form-grid">
+            <section class="form-section">
+              <h4>Package Core Details</h4>
+              <div class="form-grid-two">
+                <div class="form-field">
+                  <label for="packageTitle">Title</label>
+                  <input type="text" id="packageTitle" placeholder="e.g. Swiss Alps Explorer" required />
+                </div>
+                <div class="form-field">
+                  <label for="packageCountry">Country</label>
+                  <input type="text" id="packageCountry" placeholder="e.g. Switzerland" required />
+                </div>
+                <div class="form-field">
+                  <label for="packageDuration">Duration</label>
+                  <input type="text" id="packageDuration" placeholder="e.g. 8 Days / 7 Nights" required />
+                </div>
+                <div class="form-field">
+                  <label for="packagePrice">Price from Bengaluru</label>
+                  <input type="number" id="packagePrice" placeholder="e.g. 98000" min="1" required />
+                </div>
+                <div class="form-field">
+                  <label for="packageTotalSeats">Total Seats</label>
+                  <input type="number" id="packageTotalSeats" placeholder="e.g. 48" min="1" required />
+                </div>
+                <div class="form-field">
+                  <label for="packageAvailableSeats">Available Seats</label>
+                  <input type="number" id="packageAvailableSeats" placeholder="e.g. 26" min="0" required />
+                </div>
+                <div class="form-field span-2">
+                  <label for="packageDestinations">Destinations (comma separated)</label>
+                  <input id="packageDestinations" type="text" placeholder="Zurich, Lucerne, Interlaken" required />
+                </div>
+                <div class="form-field span-2">
+                  <label for="packageDescription">Description</label>
+                  <textarea id="packageDescription" placeholder="Short package summary" rows="3" required></textarea>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <h4>Media & Itinerary</h4>
+              <div class="form-grid-two">
+                <div class="image-source-toggle span-2">
+                  <label><input type="radio" name="imageSource" value="links" checked /> Use Links</label>
+                  <label><input type="radio" name="imageSource" value="upload" /> Upload Images</label>
+                </div>
+
+                <div id="imageLinksSection" class="form-field span-2">
+                  <label for="packageImagesLinks">Image URLs (one per line, minimum 2)</label>
+                  <textarea
+                    id="packageImagesLinks"
+                    placeholder="https://...&#10;https://..."
+                    rows="3"
+                  ></textarea>
+                </div>
+
+                <div id="imageUploadSection" class="hidden span-2">
+                  <div class="form-field">
+                    <label for="packageImageFiles">Upload Images</label>
+                    <div class="upload-inline">
+                      <input id="packageImageFiles" type="file" accept="image/*" multiple />
+                      <button id="uploadPackageImagesBtn" type="button" class="upload-icon-btn primary" aria-label="Upload images">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M6 18h11a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.7-1.9A4.5 4.5 0 0 0 6 18zm6-7.6 3 3h-2v3h-2v-3H9z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <p id="uploadedImagesMeta" class="muted"></p>
+                </div>
+
+                <div class="form-field span-2">
+                  <label for="packageItinerary">Itinerary (one line per day)</label>
+                  <textarea id="packageItinerary" placeholder="Day 1 ...&#10;Day 2 ..." rows="6" required></textarea>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="actions">
+            <button type="button" id="cancelPackageFormBtn">Cancel</button>
+            <button type="submit" id="packageSubmitBtn" class="primary">Create Package</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="deleteConfirmModal" class="modal hidden">
+      <div class="modal-content glass confirm-modal-content">
+        <div class="tab-header-row">
+          <h3 id="deleteConfirmTitle">Confirm Delete</h3>
+          <button type="button" id="closeDeleteConfirmBtn" class="icon-close-btn" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <p id="deleteConfirmMessage" class="muted">
+          This action cannot be undone.
+        </p>
+        <div class="actions confirm-actions">
+          <button type="button" id="cancelDeleteConfirmBtn">Cancel</button>
+          <button type="button" id="confirmDeleteBtn" class="danger-solid-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/js/admin-page.js"></script>
+  </body>
+</html>

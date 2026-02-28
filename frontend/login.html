@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Travels | Login</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-art"></div>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <main class="auth-shell">
+      <section class="brand-panel glass">
+        <p class="eyebrow">International Travel Platform</p>
+        <h1>Sky Travels</h1>
+        <p class="muted">
+          Manage premium global packages, bookings, analytics, and auditing through a secure role-based
+          system.
+        </p>
+      </section>
+
+      <section class="auth-panel glass">
+        <form id="loginForm" class="stack">
+          <h2>Sign In</h2>
+          <div class="form-field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="Email address" required />
+            <small id="loginEmailError" class="field-error"></small>
+          </div>
+          <div class="form-field">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Password" required />
+            <small id="loginPasswordError" class="field-error"></small>
+          </div>
+          <button type="submit" class="primary">Login</button>
+          <a class="ghost-link" href="/signup.html">Create Account</a>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="/js/login-page.js"></script>
+  </body>
+</html>
