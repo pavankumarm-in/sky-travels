@@ -1,6 +1,5 @@
 const bookingService = require("../services/bookingService");
-const asyncHandler = require("../utils/asyncHandler");
-const { sendResponse } = require("../utils/apiResponse");
+const { asyncHandler, sendResponse } = require("../utils");
 
 const createBooking = asyncHandler(async (req, res) => {
   const data = await bookingService.createBooking({

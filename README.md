@@ -20,7 +20,7 @@ Full stack travel booking application with separate `USER` and `ADMIN` workflows
 - Node.js: **v20 LTS** (recommended and expected)
 - npm: shipped with Node.js v20
 - MongoDB Community Server: 7.x or newer
-- MongoDB Compass (Optional):, recommended for DB inspection
+- MongoDB Compass (optional): recommended for DB inspection
 
 ### 1.3 Install Prerequisites
 
@@ -304,14 +304,9 @@ sky-travels/
 
 ### 3.12 Backend Utilities
 
-- `backend/src/utils/ApiError.js`
-  - Custom API error class.
-- `backend/src/utils/apiResponse.js`
-  - Consistent JSON success response helper.
-- `backend/src/utils/asyncHandler.js`
-  - Async wrapper for controllers.
-- `backend/src/utils/validators.js`
-  - Shared validation helpers.
+- `backend/src/utils/index.js`
+  - Consolidated backend utility module.
+  - Exposes: `ApiError`, `sendResponse`, `asyncHandler`, `isValidEmail`, `isValidObjectId`.
 
 ### 3.13 Frontend Pages
 
@@ -340,22 +335,19 @@ sky-travels/
   - Fetch wrapper and all API client functions.
 - `frontend/js/auth.js`
   - Session storage, token helpers, role guards.
-- `frontend/js/common-page.js`
-  - Shared page shell init (theme, nav, user meta, logout).
-- `frontend/js/ui.js`
-  - Toast system, theme toggling, global UI actions.
+- `frontend/js/app-shell.js`
+  - Consolidated shared UI module:
+  - Theme initialization, toast system, sidebar/nav actions, user meta, common `qs` helper.
+- `frontend/js/auth-pages.js`
+  - Consolidated auth entry module:
+  - Handles both login and signup page behavior with page-aware initialization.
 - `frontend/js/images.js`
   - Safe image source helper for package/gallery rendering.
-- `frontend/js/login-page.js`
-  - Login form logic.
-- `frontend/js/signup-page.js`
-  - Signup form logic.
+- `frontend/js/user-pages.js`
+  - Consolidated user secondary pages entry:
+  - Handles booking history and package details pages.
 - `frontend/js/packages-page.js`
   - Packages rendering, filters, pagination, booking + payment workflow.
-- `frontend/js/package-details-page.js`
-  - Package details fetch/render logic.
-- `frontend/js/bookings-page.js`
-  - User booking history rendering and pagination.
 - `frontend/js/admin-page.js`
   - Admin tabs, analytics rendering, users/packages/bookings/audit interactions.
 

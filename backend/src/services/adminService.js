@@ -1,4 +1,4 @@
-const ApiError = require("../utils/ApiError");
+const { ApiError } = require("../utils");
 const ROLES = require("../constants/roles");
 const userRepository = require("../repositories/userRepository");
 const bookingRepository = require("../repositories/bookingRepository");

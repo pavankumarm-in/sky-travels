@@ -1,7 +1,6 @@
 import { api } from "./api.js";
 import { authStore, requireAdmin } from "./auth.js";
-import { initAppShell, qs } from "./common-page.js";
-import { showToast } from "./ui.js";
+import { initAppShell, qs, showToast } from "./app-shell.js";
 
 const state = { chart: null, uploadedImagePaths: [], confirmResolver: null };
 const isValidImageRef = (img) =>

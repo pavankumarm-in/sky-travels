@@ -1,5 +1,7 @@
 import { authStore } from "./auth.js";
 
+export const qs = (id) => document.getElementById(id);
+
 const ensureToastRoot = () => {
   let container = document.getElementById("toastContainer");
   if (!container) {
@@ -79,4 +81,16 @@ export const setActiveNav = (pageKey) => {
     if (el.dataset.nav === pageKey) el.classList.add("active-link");
     else el.classList.remove("active-link");
   });
+};
+
+export const initAppShell = (activeNav) => {
+  initTheme();
+  bindGlobalActions();
+  setActiveNav(activeNav);
+
+  const user = authStore.getUser();
+  const userMeta = qs("userMeta");
+  if (user && userMeta) {
+    userMeta.textContent = `${user.name} (${user.role})`;
+  }
 };

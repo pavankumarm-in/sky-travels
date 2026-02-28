@@ -1,4 +1,4 @@
-const ApiError = require("../utils/ApiError");
+const { ApiError } = require("../utils");
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = err instanceof ApiError ? err.statusCode : 500;

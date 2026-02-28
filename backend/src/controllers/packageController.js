@@ -1,6 +1,5 @@
 const packageService = require("../services/packageService");
-const asyncHandler = require("../utils/asyncHandler");
-const { sendResponse } = require("../utils/apiResponse");
+const { asyncHandler, sendResponse } = require("../utils");
 
 const getPackages = asyncHandler(async (req, res) => {
   const { search, minPrice, maxPrice } = req.query;

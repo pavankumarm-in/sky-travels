@@ -1,7 +1,6 @@
 const adminService = require("../services/adminService");
 const auditLogService = require("../services/auditLogService");
-const asyncHandler = require("../utils/asyncHandler");
-const { sendResponse } = require("../utils/apiResponse");
+const { asyncHandler, sendResponse } = require("../utils");
 
 const getUsers = asyncHandler(async (req, res) => {
   const page = Number(req.query.page || 1);

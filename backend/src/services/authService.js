@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const ApiError = require("../utils/ApiError");
-const { isValidEmail } = require("../utils/validators");
+const { ApiError, isValidEmail } = require("../utils");
 const { jwtSecret, jwtExpiresIn } = require("../config/env");
 const userRepository = require("../repositories/userRepository");
 

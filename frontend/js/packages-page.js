@@ -1,8 +1,7 @@
 import { api } from "./api.js";
 import { authStore, requireUser } from "./auth.js";
-import { initAppShell, qs } from "./common-page.js";
+import { initAppShell, qs, showToast } from "./app-shell.js";
 import { getPackageImages } from "./images.js";
-import { showToast } from "./ui.js";
 
 const state = {
   page: 1,

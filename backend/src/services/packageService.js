@@ -1,5 +1,4 @@
-const ApiError = require("../utils/ApiError");
-const { isValidObjectId } = require("../utils/validators");
+const { ApiError, isValidObjectId } = require("../utils");
 const packageRepository = require("../repositories/packageRepository");
 const auditLogService = require("./auditLogService");
 
