@@ -1,4 +1,4 @@
-# Sky Travels Enterprise Travel Booking System
+# Sky Travels International Travel Booking System
 
 Full stack travel booking application with separate `USER` and `ADMIN` workflows, JWT auth, MongoDB persistence, audit logging, analytics, and a multi-page vanilla JS frontend.
 
